@@ -22,14 +22,9 @@ public class Main {
 	public static void main(String args[]){
 		System.out.println("Please input something: ");
 		Scanner sc = new Scanner(System.in);
-		String strs[] = new String[sc.nextInt()];
-		strs[0] = sc.next();
-		for(int i = 1; i < strs.length; ++i){
-			strs[i] = sc.nextLine();
-		}
-		GroupAnagrams ga = new GroupAnagrams();
-		List<List<String>> ls = ga.groupAnagrams(strs);
-		System.out.println(Arrays.toString(ls.toArray()));
+		String s = sc.nextLine();
+		BasicCalculatorII bc = new BasicCalculatorII();
+		System.out.println(bc.calculate(s));
 		
 		sc.close();
 	}
