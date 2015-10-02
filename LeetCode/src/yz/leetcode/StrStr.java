@@ -9,12 +9,55 @@
 package yz.leetcode;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * @author Yaolin Zhang
  * @time 9:23:28 PM Aug 29, 2015
  */
 public class StrStr {
+	/*
+	 * Boyer–Moore Algorithm
+	 */
+	public int strStrBM(String haystack, String needle){
+		int len1 = haystack.length();
+		int len2 = needle.length();
+		if(len2 == 0){
+			return 0;
+		}
+		for(int i = len2 - 1; i < len1; ++i){
+			int j = i;
+			int k = len2 - 1;
+			while(k >= 0 && haystack.charAt(j--) == needle.charAt(k--)){
+			}
+			if(k == -1){
+				return i + 1 - len2;
+			}else{
+				i = i + k + 1;
+			}
+		}
+		return -1;
+	}
+	
+	/*
+	 * RK Algorithm
+	 */
+	public int strStrRK(String haystack, String needle){
+		int len1 = haystack.length();
+		int len2 = needle.length();
+		if(len2 == 0){
+			return 0;
+		}
+		HashMap<String, Boolean> hm = new HashMap<>();
+		hm.put(needle, true);
+		for(int i = 0; i < len1 - len2 + 1; ++i){
+			if(hm.containsKey(haystack.substring(i, i + len2))){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	/*
 	 * Common method, 2-level for-loop
 	 */

@@ -18,19 +18,28 @@ public class Main {
 	public static void main(String args[]){
 		System.out.println("Please input something: ");
 		Scanner sc = new Scanner(System.in);
-		Chapter1 c11 = new Chapter1();
-		int N;
-		N = sc.nextInt();
-		int[][] image = new int[N][N];
-		for(int i = 0; i < N; ++i){
-			for(int j = 0; j < N; ++j){
-				image[i][j] = sc.nextInt();
-			}
+		
+		int length1 = sc.nextInt();
+		SingleLinkedList num1 = new SingleLinkedList(sc.nextInt());
+		SingleLinkedList cur = num1;
+		while(length1 > 1){
+			cur.setNext(new SingleLinkedList(sc.nextInt()));
+			cur = cur.getNext();
+			--length1;
 		}
-		c11.rotate(image, N);
-		for(int i = 0; i < N; ++i){
-			System.out.println(c11.compress(sc.nextLine()));
+		
+		int length2 = sc.nextInt();
+		SingleLinkedList num2 = new SingleLinkedList(sc.nextInt());
+		cur = num2;
+		while(length2 > 1){
+			cur.setNext(new SingleLinkedList(sc.nextInt()));
+			cur = cur.getNext();
+			--length2;
 		}
+		
+		Chapter2 c2 = new Chapter2();
+		c2.addNormalLists(num1, num2);
+		
 		sc.close();
 	}
 }

@@ -24,7 +24,7 @@ public class MinimumSizeSubarraySum {
     		for(int i = 0; i < nums.length; ++i){
     			sum += nums[i];
     			if(sum >= s){
-    				while(start < nums.length && sum - nums[start] >= s){
+    				while(sum - nums[start] >= s){
     					sum -= nums[start];
     					++start;
     				}

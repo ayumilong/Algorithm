@@ -179,7 +179,7 @@ public class Chapter1 {
 	 * Question #6
 	 */
 	public void rotate(int[][] image, int N){ //Rotate to right for 90 degrees
-		if(N > 2){
+		if(N > 1){
 			for(int i = 0; i < N / 2; ++i){
 				for(int j = i; j < N - 1 - i; ++j){
 					int temp = image[i][j];
@@ -191,4 +191,18 @@ public class Chapter1 {
 			}
 		}
 	}
+	public void rotate(int[][] matrix) {
+        int N = matrix.length;
+        if(N > 2){
+			for(int i = 0; i < N / 2; ++i){
+				for(int j = i; j < N - 1 - i; ++j){
+					int temp = matrix[i][j];
+					matrix[i][j] = matrix[N - j - 1][i]; //Left to top
+					matrix[N - j - 1][i] = matrix[N - i - 1][N - j - 1]; //Bottom to left
+					matrix[N - i - 1][N - j - 1] = matrix[j][N - i - 1]; //Right to bottom
+					matrix[j][N - i - 1] = temp; //Top to right
+				}
+			}
+		}
+    }
 }
