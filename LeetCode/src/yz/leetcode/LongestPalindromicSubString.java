@@ -28,7 +28,7 @@ public class LongestPalindromicSubString {
 			start = left + 1;
 		}
 	}
-	public String longestPalindrome(String s){
+	public String longestPalindrome4(String s){
 		int len = s.length();
 		if(len == 0 || len == 1){
 			return s;
@@ -38,6 +38,48 @@ public class LongestPalindromicSubString {
 			getPalindrom(s, i, i + 1);
 		}
 		return s.substring(start, start + curLen);
+	}
+	
+	private String addBarrier(String s){
+		int len = s.length();
+		if(len == 0){
+			return "^$";
+		}
+		StringBuffer sb = new StringBuffer("^");
+		for(int i = 0; i < len; ++i){
+			sb.append('|');
+			sb.append(s.charAt(i));
+		}
+		sb.append("|$");
+		return sb.toString();
+	}
+	
+	public String longestPalindrome(String s){
+		String t = addBarrier(s);
+		int len = t.length();
+		int palindrome[] = new int[len];
+		int central = 0;
+		int right = 0;
+		for(int i = 1; i < len - 1; ++i){
+			int mirrorI = 2 * central - i;
+			palindrome[i] = right > i ? Math.min(right - i, palindrome[mirrorI]) : 0;
+			while(t.charAt(i - palindrome[i] - 1) == t.charAt(i + palindrome[i] + 1)){
+				++palindrome[i];
+			}
+			if(i + palindrome[i] > right){
+				central = i;
+				right = i + palindrome[i];
+			}
+		}
+		int maxLen = 0;
+		int maxI = 1;
+		for(int i = 1; i < len - 1; ++i){
+			if(palindrome[i] > maxLen){
+				maxLen = palindrome[i];
+				maxI = i;
+			}
+		}
+		return s.substring((maxI - 1 - maxLen) / 2, (maxI - 1 + maxLen) / 2);
 	}
 	
 	private boolean isPalindrom(String s, int start, int end){

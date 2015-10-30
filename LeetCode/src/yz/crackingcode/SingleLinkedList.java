@@ -16,6 +16,10 @@ public class SingleLinkedList {
 	private int data;
 	private SingleLinkedList next = null;
 	
+	public SingleLinkedList(){
+		this.data = 0;
+	}
+	
 	public SingleLinkedList(int data){
 		this.data = data;
 	}

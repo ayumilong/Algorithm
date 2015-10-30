@@ -21,7 +21,8 @@ public class BasicCalculatorII {
 		}
 		return start;
 	}
-	public int calculate(String s){
+
+	public int calculate2(String s){
 		s = s.trim();
 		int len = s.length();
 		int startPos = 0;

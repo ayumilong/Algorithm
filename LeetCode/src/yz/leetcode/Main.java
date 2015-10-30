@@ -9,7 +9,8 @@
 package yz.leetcode;
 
 import java.util.*;
-import yz.leetcode.tools.*;
+
+import yz.leetcode.tools.BST;
 
 /**
  * @author Yaolin Zhang
@@ -18,19 +19,30 @@ import yz.leetcode.tools.*;
 
 public class Main {
 	public static void main(String args[]) {
-
 		System.out.println("Please input something: ");
 		Scanner sc = new Scanner(System.in);
 
-		int len = sc.nextInt();
-		ListNode head = new ListNode(sc.nextInt());
-		ListNode cur = head;
-		for (int i = 1; i < len; ++i) {
-			cur.next = new ListNode(sc.nextInt());
-			cur = cur.next;
+		int[] nums = new int[sc.nextInt()];
+		for (int i = 0; i < nums.length; ++i) {
+			nums[i] = i + 1;
 		}
-		ReverseLinkedListII rll = new ReverseLinkedListII();
-		rll.reverseBetween(head, sc.nextInt(), sc.nextInt());
+
+		BST bst = new BST(nums);
+		// bst.insert(sc.nextInt());
+		bst.printBST();
+		int deleteNum = sc.nextInt();
+		while (deleteNum > 0) {
+			bst.delete(sc.nextInt());
+			bst.printBST();
+			--deleteNum;
+			bst.insert(sc.nextInt());
+			bst.printBST();
+		}
+
+		while (sc.hasNext()) {
+			System.out.println(bst.kthNumber(sc.nextInt()));
+		}
+
 		sc.close();
 	}
 }

@@ -15,30 +15,21 @@ import java.util.*;
  * @time 1:19:08 PM Aug 30, 2015
  */
 public class Main {
+	
 	public static void main(String args[]){
 		System.out.println("Please input something: ");
 		Scanner sc = new Scanner(System.in);
 		
-		int length1 = sc.nextInt();
-		SingleLinkedList num1 = new SingleLinkedList(sc.nextInt());
-		SingleLinkedList cur = num1;
-		while(length1 > 1){
-			cur.setNext(new SingleLinkedList(sc.nextInt()));
-			cur = cur.getNext();
-			--length1;
+		Chapter4 c4 = new Chapter4();
+		
+		int[] nums = new int[sc.nextInt()];
+		for(int i = 0; i < nums.length; ++i){
+			nums[i] = sc.nextInt();
 		}
 		
-		int length2 = sc.nextInt();
-		SingleLinkedList num2 = new SingleLinkedList(sc.nextInt());
-		cur = num2;
-		while(length2 > 1){
-			cur.setNext(new SingleLinkedList(sc.nextInt()));
-			cur = cur.getNext();
-			--length2;
-		}
-		
-		Chapter2 c2 = new Chapter2();
-		c2.addNormalLists(num1, num2);
+		TreeNode root = c4.createBinaryTree(nums);
+		c4.printLinkedList(c4.createLinkedList(root));
+		System.out.println(Arrays.toString(c4.preorderTraversalRecursive(root).toArray()));
 		
 		sc.close();
 	}
