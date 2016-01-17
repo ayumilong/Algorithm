@@ -8,8 +8,9 @@
  */
 package yz.leetcode;
 
-import yz.crackingcode.TreeNode;
 import java.util.*;
+
+import yz.leetcode.tools.TreeNode;
 
 /**
  * @author Yaolin Zhang

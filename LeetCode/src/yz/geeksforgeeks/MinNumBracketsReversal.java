@@ -8,8 +8,6 @@
  */
 package yz.geeksforgeeks;
 
-import java.util.*;
-
 /**
  * @author Yaolin Zhang
  * @time 7:22:13 PM Oct 29, 2015
@@ -18,27 +16,27 @@ public class MinNumBracketsReversal {
 	public int reverseBrackets(String brackets){
 		int len = brackets.length();
 		int result = 0;
+		int leftCount = 0;
 		if(len % 2 == 0){
-			Stack<Character> stack = new Stack<>();
 			for(int i = 0; i < len; ++i){
 				char c = brackets.charAt(i);
 				switch(c){
 				case '{':
-					stack.push(c);
+					++leftCount;
 					break;
 				case '}':
-					if(!stack.isEmpty()){
-						stack.pop();
+					if(leftCount > 0){
+						--leftCount;
 					}else{
 						++result;
-						stack.push('{');
+						++leftCount;
 					}
 					break;
 				default:
 						return -1;
 				}
 			}
-			return result + stack.size() / 2;
+			return result + leftCount / 2;
 		}
 		
 		return -1;

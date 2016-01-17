@@ -10,7 +10,7 @@ package yz.leetcode;
 
 import java.util.*;
 
-import yz.crackingcode.TreeNode;
+import yz.leetcode.tools.TreeNode;
 
 /**
  * @author Yaolin Zhang

@@ -32,7 +32,6 @@ public class Atoi {
 
 			if ((decimalAsw > 214748364 || (decimalAsw == 214748364 && str.charAt(i) > '7'))) {
 				if (sign == -1) {
-					System.out.println("Hello World");
 					return Integer.MIN_VALUE;
 				} else{
 					return Integer.MAX_VALUE;

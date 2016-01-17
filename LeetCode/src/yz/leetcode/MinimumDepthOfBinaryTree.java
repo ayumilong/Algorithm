@@ -18,8 +18,11 @@ import yz.leetcode.tools.TreeNode;
  */
 public class MinimumDepthOfBinaryTree {
     public int minDepth(TreeNode root) {
+    		if(root == null){
+    			return 0;
+    		}
 		Stack<TreeNode> nodes = new Stack<>();
-		int curMin = 0;
+		int curMin = Integer.MAX_VALUE;
 		while(root != null || !nodes.isEmpty()){
 			while(root != null){
 				nodes.push(root);
@@ -39,6 +42,6 @@ public class MinimumDepthOfBinaryTree {
 				root = nodes.peek().right;
 			}
 		}
-		return 0;        
+		return curMin;        
     }
 }

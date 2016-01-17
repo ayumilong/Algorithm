@@ -10,6 +10,8 @@ package yz.crackingcode;
 
 import java.util.*;
 
+import yz.leetcode.tools.TreeNode;
+
 /**
  * @author Yaolin Zhang
  * @time 2:22:57 PM Oct 18, 2015
@@ -176,8 +178,8 @@ public class Chapter4 {
 		return listHead;
 	}
 
-	public void printLinkedList(LinkedList<LinkedList<TreeNode>> list) {
-		for (LinkedList<TreeNode> ll : list) {
+	public void printLinkedList(List<List<TreeNode>> list) {
+		for (List<TreeNode> ll : list) {
 			for (TreeNode t : ll) {
 				System.out.print(t.val + " ");
 			}
@@ -186,7 +188,7 @@ public class Chapter4 {
 		System.out.println();
 	}
 
-	public LinkedList<LinkedList<TreeNode>> toLinkedList(TreeNode root) {
+	public List<List<TreeNode>> toLinkedList(TreeNode root) {
 		if (root == null) {
 			return null;
 		}
@@ -194,7 +196,7 @@ public class Chapter4 {
 		nodes.add(root);
 		nodes.add(null);
 
-		LinkedList<LinkedList<TreeNode>> results = new LinkedList<LinkedList<TreeNode>>();
+		List<List<TreeNode>> results = new LinkedList<>();
 		while (true) {
 			TreeNode curNode = nodes.poll();
 			LinkedList<TreeNode> ll = new LinkedList<>();
@@ -220,8 +222,8 @@ public class Chapter4 {
 	/*
 	 * Solution from Cracking Code
 	 */
-	public LinkedList<LinkedList<TreeNode>> createLinkedList(TreeNode root) {
-		LinkedList<LinkedList<TreeNode>> result = new LinkedList<>();
+	public List<List<TreeNode>> createLinkedList(TreeNode root) {
+		List<List<TreeNode>> result = new LinkedList<>();
 		LinkedList<TreeNode> current = new LinkedList<>();
 		if (root != null) {
 			current.add(root);

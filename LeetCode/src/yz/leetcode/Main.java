@@ -10,7 +10,8 @@ package yz.leetcode;
 
 import java.util.*;
 
-import yz.leetcode.tools.BST;
+import yz.leetcode.tools.*;
+import yz.crackingcode.*;
 
 /**
  * @author Yaolin Zhang
@@ -18,31 +19,39 @@ import yz.leetcode.tools.BST;
  */
 
 public class Main {
+	public static double myPow(double x, int n) {
+		System.out.println(x);
+	    
+	    if (n == 0) {
+	        return 1;
+	    }
+
+	    int nSign = n < 0 ? -1 : 1;
+	    n = Math.abs(n);
+
+	    double result = myPow(x, n / 2);
+	    result *= result;
+	    if (n % 2 != 0) {
+	        result *= x;
+	    }
+
+	    return nSign < 0 ? 1 / result : result;
+	}
+	
 	public static void main(String args[]) {
 		System.out.println("Please input something: ");
 		Scanner sc = new Scanner(System.in);
-
-		int[] nums = new int[sc.nextInt()];
-		for (int i = 0; i < nums.length; ++i) {
-			nums[i] = i + 1;
+		
+		int A[] = {1};
+		
+		FindPeakElement fpe = new FindPeakElement();
+		
+		System.out.println(fpe.findPeakElement(A));
+		
+		while(sc.hasNext()){
+			
 		}
-
-		BST bst = new BST(nums);
-		// bst.insert(sc.nextInt());
-		bst.printBST();
-		int deleteNum = sc.nextInt();
-		while (deleteNum > 0) {
-			bst.delete(sc.nextInt());
-			bst.printBST();
-			--deleteNum;
-			bst.insert(sc.nextInt());
-			bst.printBST();
-		}
-
-		while (sc.hasNext()) {
-			System.out.println(bst.kthNumber(sc.nextInt()));
-		}
-
+		
 		sc.close();
 	}
 }

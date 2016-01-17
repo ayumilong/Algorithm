@@ -86,13 +86,16 @@ public class StrStr {
 		*/
 		int i = 0;
 		int j = 0;
-		while(i < hayLen - needleLen + 1 && j < needleLen){
+		while(i < hayLen && j < needleLen){
 			if(haystack.charAt(i) == needle.charAt(j)){
 				++i;
 				++j;
 			}else{
 				i = i - j + 1;
 				j = 0;
+				if(i >= hayLen - needleLen + 1){
+					return -1;
+				}
 			}
 		}
 		if(j == needleLen){

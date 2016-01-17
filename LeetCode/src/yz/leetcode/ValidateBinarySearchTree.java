@@ -29,7 +29,7 @@ public class ValidateBinarySearchTree {
 		}
 	}
 
-	public boolean isValidBST(TreeNode root) {
+	public boolean isValidBST3(TreeNode root) {
 		if (root == null) {
 			return true;
 		}
