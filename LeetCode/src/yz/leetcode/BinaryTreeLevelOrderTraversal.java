@@ -17,7 +17,67 @@ import yz.leetcode.tools.TreeNode;
  * @time 10:07:31 PM Oct 24, 2015
  */
 public class BinaryTreeLevelOrderTraversal {
-	public List<List<Integer>> levelOrder(TreeNode root) {
+	/*
+	 * DFS
+	 */
+    public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
+        ArrayList<ArrayList<Integer>> results = new ArrayList<>();
+        if(root == null){
+            return results;
+        }
+        int targetLevel = 0;
+        while(true){
+            ArrayList<Integer> level = new ArrayList<>();
+            dfs(root, level, 0, targetLevel);
+            if(level.size() == 0){
+                break;
+            }
+            results.add(level);
+            ++targetLevel;
+        }
+        return results;
+    }
+    
+    private void dfs(TreeNode root, ArrayList<Integer> level, int curLevel, int targetLevel){
+        if(root == null){
+            return;
+        }
+        if(curLevel == targetLevel){
+            level.add(root.val);
+        }
+        dfs(root.left, level, curLevel + 1, targetLevel);
+        dfs(root.right, level, curLevel + 1, targetLevel);
+    }
+	
+    /*
+     * BFS
+     */
+    public ArrayList<ArrayList<Integer>> levelOrder2(TreeNode root) {
+        ArrayList<ArrayList<Integer>> results = new ArrayList<>();
+        if(root == null){
+            return results;
+        }
+        Queue<TreeNode> level = new LinkedList<>();
+        level.add(root);
+        while(!level.isEmpty()){
+            int size = level.size();
+            ArrayList<Integer> curLevel = new ArrayList<>();
+            for(int i = 0; i < size; ++i){
+                TreeNode cur = level.poll();
+                curLevel.add(cur.val);
+                if(cur.left != null){
+                    level.add(cur.left);
+                }
+                if(cur.right != null){
+                    level.add(cur.right);
+                }
+            }
+            results.add(curLevel);
+        }
+        return results;
+    }
+	
+	public List<List<Integer>> levelOrder1(TreeNode root) {
 		List<List<Integer>> result = new LinkedList<>();
 		LinkedList<TreeNode> current = new LinkedList<>();
 		

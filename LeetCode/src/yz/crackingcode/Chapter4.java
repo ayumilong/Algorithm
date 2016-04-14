@@ -303,11 +303,9 @@ public class Chapter4 {
 				nodes.push(root);
 				root = root.left;
 			}
-			if (!nodes.isEmpty()) {
-				TreeNode cur = nodes.pop();
-				result.add(cur.val);
-				root = cur.right;
-			}
+			TreeNode cur = nodes.pop();
+			result.add(cur.val);
+			root = cur.right;
 		}
 		return result;
 	}

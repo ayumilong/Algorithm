@@ -86,14 +86,12 @@ public class ValidateBinarySearchTree {
 				nodes.push(root);
 				root = root.left;
 			}
-			if (!nodes.isEmpty()) {
-				TreeNode cur = nodes.pop();
-				if (pre != null && pre.val >= cur.val) {
-					return false;
-				}
-				pre = cur;
-				root = cur.right;
+			TreeNode cur = nodes.pop();
+			if (pre != null && pre.val >= cur.val) {
+				return false;
 			}
+			pre = cur;
+			root = cur.right;
 		}
 		return true;
     }

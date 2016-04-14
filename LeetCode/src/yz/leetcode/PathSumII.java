@@ -43,50 +43,34 @@ public class PathSumII {
 		return results;
 	}
 	
-	private List<Integer> copyStack(Stack<TreeNode> path){
-		List<Integer> result = new LinkedList<>();
-		//Stack<TreeNode> helper = new Stack<>();
-		for(TreeNode n : path){
-			result.add(n.val);
-		}
-		/*
-		while(!path.isEmpty()){
-			helper.push(path.pop());
-		}
-		while(!helper.isEmpty()){
-			path.push(helper.peek());
-			result.add(helper.pop().val);
-		}*/
-		return result;
-	}
-	
-    public List<List<Integer>> pathSum1(TreeNode root, int sum) {
+    public List<List<Integer>> pathSum1(TreeNode root, int target) {
+        List<List<Integer>> result = new LinkedList<>();
+        LinkedList<Integer> path = new LinkedList<>();
         Stack<TreeNode> nodes = new Stack<>();
-        List<List<Integer>> results = new LinkedList<>();
-    		
-        int count = 0;
+        int sum = 0;
         while(root != null || !nodes.isEmpty()){
-        		while(root != null){
-        			nodes.push(root);
-        			count += root.val;
-        			root = root.left;
-        		}
-        		root = nodes.peek().right;
-        		if(root == null){
-            		if(count == sum && nodes.peek().left == null){
-            			results.add(copyStack(nodes));
-            		}
-        			while(root == nodes.peek().right){
-        				root = nodes.pop();
-        				count -= root.val;
-        				if(nodes.isEmpty()){
-        					return results;
-        				}
-        			}
-        			root = nodes.peek().right;
-        		}
+            while(root != null){
+                nodes.add(root);
+                path.add(root.val);
+                sum += root.val;
+                root = root.left;
+            }
+            root = nodes.peek().right;
+            if(root == null){
+                if(sum == target && nodes.peek().left == null){
+                    result.add(new LinkedList<>(path));
+                }
+                while(root == nodes.peek().right){
+                    root = nodes.pop();
+                    sum -= root.val;
+                    path.removeLast();
+                    if(nodes.isEmpty()){
+                        return result;
+                    }
+                }
+                root = nodes.peek().right;
+            }
         }
-    	
-    		return results;
+        return result;
     }
 }

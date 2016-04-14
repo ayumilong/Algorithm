@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>LeetCode</name>
+	<name>Algorithm</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,4 +14,22 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>output.out</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Desktop/Code%20Jam/output.out</locationURI>
+		</link>
+		<link>
+			<name>output1.out</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Desktop/Code%20Jam/output1.out</locationURI>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>copy_PARENT</name>
+			<value>$%7BPARENT-3-PROJECT_LOC%7D</value>
+		</variable>
+	</variableList>
 </projectDescription>

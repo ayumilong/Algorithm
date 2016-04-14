@@ -1,0 +1,20 @@
+1. Intersection of some String lists
+   Input:	List<List<String>> strs: {"hello", "world", "louise", "hello"},
+							{"world", "jack", "louise"},
+							{"jack", "louise", "hello"}
+   Output: List<String>: {"world", "louise"}
+   
+   Solution: Use HashMap to scan each List<String> and count how many list including the words
+   
+2. Design: Chess Game
+	Cracking The Code Interview 150
+3. Jump Game II: Use Tree to get the minimum path
+
+4. Construct Binary Tree From Pre-order and In-order Traversal
+
+5. Number of Islands I and II
+
+3
+a b
+c d e
+f g

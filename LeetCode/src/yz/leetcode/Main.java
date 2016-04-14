@@ -42,14 +42,14 @@ public class Main {
 		System.out.println("Please input something: ");
 		Scanner sc = new Scanner(System.in);
 		
-		int A[] = {1};
+		ValidPalindrome vp = new ValidPalindrome();
 		
-		FindPeakElement fpe = new FindPeakElement();
-		
-		System.out.println(fpe.findPeakElement(A));
-		
-		while(sc.hasNext()){
+		Set<String> dict = new HashSet<>();
+		for(String s : dict){
 			
+		}
+		while(sc.hasNext()){
+			System.out.println(vp.isPalindrome(sc.nextLine()));	
 		}
 		
 		sc.close();
