@@ -14,23 +14,6 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>1.txt</name>
-			<type>1</type>
-			<locationURI>copy_PARENT/Desktop/1.txt</locationURI>
-		</link>
-		<link>
-			<name>2.txt</name>
-			<type>1</type>
-			<locationURI>PARENT-2-WORKSPACE_LOC/Desktop/2.txt</locationURI>
-		</link>
-		<link>
-			<name>3.txt</name>
-			<type>1</type>
-			<locationURI>PARENT-2-WORKSPACE_LOC/Desktop/3.txt</locationURI>
-		</link>
-	</linkedResources>
 	<variableList>
 		<variable>
 			<name>copy_PARENT</name>

@@ -15,6 +15,7 @@ import java.util.*;
  * @time 9:32:15 PM Apr 12, 2016
  */
 public class PathSumII {
+	//Post order traversal
 	public List<List<Integer>> pathSum(TreeNode root, int target){
 		List<List<Integer>> results = new LinkedList<>();
 		Stack<TreeNode> nodes = new Stack<>();

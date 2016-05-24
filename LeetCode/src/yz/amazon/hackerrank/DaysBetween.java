@@ -68,9 +68,7 @@ public class DaysBetween {
         }
         return days;
     }
-
-    // Do not edit below this line. It is only shown so you can see the function signature.
-    // The implementation of the function is hidden.
+    
     // Month should be in 1 and 12
     static int DaysInMonth(int month, int year) throws Exception {
     		if(month < 1 || month > 12 || year < 0){

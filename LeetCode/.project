@@ -16,14 +16,24 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>output.out</name>
+			<name>1.txt</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Desktop/Code%20Jam/output.out</locationURI>
+			<locationURI>PARENT-4-PROJECT_LOC/Desktop/1.txt</locationURI>
 		</link>
 		<link>
-			<name>output1.out</name>
+			<name>2.txt</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Desktop/Code%20Jam/output1.out</locationURI>
+			<locationURI>PARENT-4-PROJECT_LOC/Desktop/2.txt</locationURI>
+		</link>
+		<link>
+			<name>src/yz/oo/design/1.out</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Desktop/1.out</locationURI>
+		</link>
+		<link>
+			<name>src/yz/oo/design/2.out</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Desktop/2.out</locationURI>
 		</link>
 	</linkedResources>
 	<variableList>

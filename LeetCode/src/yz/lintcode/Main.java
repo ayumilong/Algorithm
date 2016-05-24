@@ -18,7 +18,10 @@ import java.util.*;
  * @time 10:57:04 PM Jan 12, 2016
  */
 public class Main {
+	private static final char SS = 0x20;
+	private static final int MA = 1;
 	public static void main(String[] args){
+		System.out.println(SS + MA + "=A");
 		String s1 = "eat";
 		String s2 = "tae";
 		ScrambleString ss = new ScrambleString();

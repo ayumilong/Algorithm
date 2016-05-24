@@ -71,7 +71,7 @@ public class BinaryTreeMaximumPathSum {
         MaximumPath left = helper1(root.left);
         MaximumPath right = helper1(root.right);
         int max = left.pathSum > right.pathSum ? left.pathSum : right.pathSum;
-        //The max path startign from the current root
+        //The max path starting from the current root
         int singleSum = left.singleSum > right.singleSum ? left.singleSum : right.singleSum;
         singleSum = singleSum > 0 ? singleSum + root.val : root.val;
         

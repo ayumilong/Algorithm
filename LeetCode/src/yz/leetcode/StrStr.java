@@ -67,23 +67,6 @@ public class StrStr {
 		if (needleLen == 0) {
 			return 0;
 		}
-
-		/*
-		for (int i = 0; i < hayLen - needleLen + 1; ++i) {
-			if (haystack.charAt(i) == needle.charAt(0)) {
-				boolean find = true;
-				for (int j = 1; j < needleLen; ++j) {
-					if (haystack.charAt(i + j) != needle.charAt(j)) {
-						find = false;
-						break;
-					}
-				}
-				if (find) {
-					return i;
-				}
-			}
-		}
-		*/
 		int i = 0;
 		int j = 0;
 		while(i < hayLen && j < needleLen){
@@ -138,27 +121,7 @@ public class StrStr {
 		}
 		int[] table = new int[len2];
 		partialMatch(needle, table, len2);
-		System.out.println(Arrays.toString(table));
-		/*
-		int m = 0;
-		int i = 0;
-		while (m + i < len1) {
-			if (haystack.charAt(m + i) == needle.charAt(i)) {
-				++i;
-				if (i == len2) {
-					return m;
-				}
-			} else {
-				if (table[i] > -1) {
-					m = m + i - table[i];
-					i = table[i];
-				} else {
-					m = m + i + 1;
-					i = 0;
-				}
-			}
-		}
-		*/
+		
 		int i = 0;
 		int j = 0;
 		while(i < len1 && j < len2){

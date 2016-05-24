@@ -1,20 +1,196 @@
+Part I: Algorithm
+
 1. Intersection of some String lists
    Input:	List<List<String>> strs: {"hello", "world", "louise", "hello"},
 							{"world", "jack", "louise"},
 							{"jack", "louise", "hello"}
    Output: List<String>: {"world", "louise"}
    
-   Solution: Use HashMap to scan each List<String> and count how many list including the words
+   Solution: Use HashMap to scan each List<String> and count how many list including the words,
+   			 A word will only be counted once for a given List<String>
    
-2. Design: Chess Game
+2. Jump Game II: Use Tree to get the minimum path
+
+3. Construct Binary Tree From Pre-order and In-order Traversal
+
+4. Number of Islands I and II
+
+5. String to Integer, Integer to Roman
+
+6. There is Drawing Board and some polygons on it. 
+   Implement an algorithm to paint the polygon that containing the point that is clicked by users
+   Solution: User BFS or DFS
+
+7. There is list of price at each day，and only one selling window is allowed. 
+   The selling price  is the minimum price of start day and end day of that selling window, 
+   and price is flat during the selling window. The selling amount is constant per day. 
+   Find out the selling window gives maximum profit, output max profit.
+   Input: [3,2,15,1,20,3,2,5]
+   Output: 45 with window [15, 1, 20]
+   Solution: Two pointers
+   
+8. Serialize and Deserialize Binary Tree
+
+9. Highest Leaf Node (Leetcode 111: Minimum Depth of Binary Tree)
+
+10. Longest Consecutive Sequence (Leetcode 128)
+
+11. Remove Duplicate Value in Unsorted List
+    Extend: Remove Duplicate Value from Sorted List I and II
+    	        Merge Two Sorted List
+    
+12. Longest Increasing Path in Matrix
+
+13. Best Time to Buy and Sell Stock I
+
+14. K Points Closest to Origin (K Closest Numbers in Sorted Array)
+
+15. String compression (CC 150)
+
+16. Given a sorted array and number, find the occurrence of the number
+	Input: [1, 2, 3, 3, 3, 4, 5], 3
+	Output: 3
+	Solution: Binary Search
+	
+17. Word Ladder II (Hard problem, Word Ladder is enough)
+
+18. Valid Parentheses
+
+19. Find the level that has most number of nodes in a Binary Tree
+	Solution: 19.1 Level Order Traversal
+			  19.2 If cannot use queue, can use recursive
+
+20. Validate Binary Search Tree
+
+21. Copy List with Random Pointer
+
+22. There is a iterator called MaybeGoodIterator and contains good and bad items. 
+	Implement a GoodInterator to overwrite hasNext() and next() to return only good items
+	based on MaybeGoodIterator (Leetcode: Peeking Iterator)
+
+Part II: OO Design
+
+1. Chess Game
+   Deck of Cards
+   Elevator
+   Modeling an elevator system:
+1. First solution
+	First there is an elevator class. It has a direction (up, down, stand, maintenance), a current floor and a list of floor requests sorted in the direction. It receives request from this elevator.
+Then there is a bank. It contains the elevators and receives the requests from the floors. These are scheduled to all active elevators (not in maintenance).
+The scheduling will be like:
+•	if available pick a standing elevator for this floor.
+•	else pick an elevator moving to this floor.
+•	else pick a standing elevator on an other floor.
+•	else pick the elevator with the lowest load.
+Each elevator has a set of states.
+•	Maintenance: the elevator does not react to external signals (only to its own signals).
+•	Stand: the elevator is fixed on a floor. If it receives a call. And the elevator is on that floor, the doors open. If it is on another floor, it moves in that direction.
+•	Up: the elevator moves up. Each time it reaches a floor, it checks if it needs to stop. If so it stops and opens the doors. It waits for a certain amount of time and closes the door (unless someting is moving through them. Then it removes the floor from the request list and checks if there is another request. If so the elevator starts moving again. If not it enters the state stand.
+•	Down: like up but in reverse direction.
+There are additional signals:
+•	alarm. The elevator stops. And if it is on a floor, the doors open, the request list is cleared, the requests moved back to the bank.
+•	door open. Opens the doors if an elevator is on a floor and not moving.
+•	door closes. Closed the door if they are open. 
+EDIT: Some elevators don't start at bottom/first_floor esp. in case of sky scrappers. min_floor & max_floor are two additional attributes for Elevator.
+
+2. Second Solution
+This is a high level object oriented design for an Elevator System. It also includes some of the main pseudocode on how different components will work. This represents simple working structure, it's by no means optimized for a real elevator system. 
+
+Classes needed for Elevator System: 
+
+ElevatorManager [Singleton - This is the main elevator program which will manage n elevators in the building]
+Members:
+List of Elevator
+Queue of Floor.Request // This maintains request for both directions. One improvement could be to keep two queues, one for each direction but it would increase complexity
+MIN_FLOOR
+MAX_FLOOR
+Operations:
+delgate()
+halt() // set whole elevator system in maintenance mode or halt operation
+
+
+Elevator [Represents individual elevators. There could be n elevators in a building]
+Members:
+Queue of Floor // this needs to be sorted so may be a PriorityQueue could be used
+Direction : Enum [Enum of direction - up, down, wait, idle, maintenance]
+CurrentFloor : Floor
+Operations:
+operate()
+moveUp()
+moveDown()
+openDoor()
+closeDoor()
+callEmergencyLine()
+getDirection()
+getCurrentFloor()
+setInMaintenanceMode()
+
+
+Floor [Represents individual floors]
+Members:
+eNum of Floors
+class Request {
+currentFloor
+destinationFloor
+Direction [Up, Down]
+}
+Operation:
+goUp()
+goDown()
+   
+   Parking lot
 	Cracking The Code Interview 150
-3. Jump Game II: Use Tree to get the minimum path
 
-4. Construct Binary Tree From Pre-order and In-order Traversal
+2. Design a system like Uber but the service is like fixing a car, cleaning a house and so on 
 
-5. Number of Islands I and II
+3. Design Amazon's E-book system
+	class User{
+		private String id
+		private List<Book> books;
+		private List<User> friends;
+		private List<Rating> ratings;
+		
+		public List<Book> getBooks(){
+			return books;
+		}
+		public List<Rating> getRatings(){
+			return ratings;
+		}
+		
+		List<Book> findKPopularBookFromFriend(){
+			Use HashTable(Thread safe) to count how many friends read a book
+			Here we need a new Object called BookCount
+			class BookCount{
+				Book book;
+				int count;
+			}
+			Use PriorityQueue to find the K popular book
+		}
+		
+		List<Rating> findKHighestRating(){
+			Implement a series of Comparator to sort Rating by Date, rating or bookID
+			Then call the rating Comparator to sort the list
+		}
+	}
+	class Book{
+		String name;
+		String id;
+	}
+	class Rating{
+		double rating;
+		String userId;
+		String bookId;
+		Date date;
+	}
+	
+4. Make your project support millions of users: Load Balancer and Lock
 
-3
-a b
-c d e
-f g
+5. Memory Management - Operating System Question
+
+6. Implement a Furniture class structure including chair, wood table, iron table and so on.
+	Implement function applyHeat() and applyWeight()
+	
+	
+Part III: Behavior     	 
+1. Why Amazon?
+2. How do you deal with very tight deadline?

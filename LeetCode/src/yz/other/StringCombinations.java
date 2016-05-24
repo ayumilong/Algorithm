@@ -10,24 +10,22 @@ package yz.other;
 
 import java.util.*;
 
+
 /**
  * @author Yaolin Zhang
  */
 public class StringCombinations {
 	public static void main(String args[]) {
+		Hashtable<Integer, Integer> table = new Hashtable<>();
 		Scanner scan = new Scanner(System.in);
-		List<List<String>> strs = new ArrayList<>();
-		int levels = scan.nextInt();
-		scan.nextLine();
-		while (levels > 0) {
-			String[] words = scan.nextLine().split(" ");
-			List<String> cur = new ArrayList<>();
-			for (String w : words) {
-				cur.add(w);
-			}
-			strs.add(cur);
-			--levels;
-		}
+		 List<List<String>> strs = new ArrayList<>();
+		    List<String> first = new ArrayList<String>(Arrays.asList("quick", "lazy", "quick"));
+		    List<String> second = new ArrayList<String>(Arrays.asList("brown", "black", "grey"));
+		    List<String> third = new ArrayList<String>(Arrays.asList("fox", "dog"));
+		    
+		    strs.add(first);
+		    strs.add(second);
+		    strs.add(third);
 		
 		StringCombinations sc = new StringCombinations();
 		sc.printCombinations(strs);
@@ -84,18 +82,6 @@ public class StringCombinations {
 		while (!wordStack.isEmpty()) {
 			if (wordStack.size() == levels) {
 				printCombination(wordStack);// Print the current combination
-				List<String> lastLevel = strs.get(levels - 1);// Last
-																// List<String>
-				int lastLen = lastLevel.size();
-
-				wordStack.pop();
-				int index = indexStack.pop() + 1;
-				while (index < lastLen) {
-					wordStack.push(lastLevel.get(index));
-					printCombination(wordStack);
-					wordStack.pop();
-					++index;
-				}
 				// If the current level has no next word, we go to previous
 				// level
 				while (!indexStack.isEmpty() && indexStack.peek() == strs.get(wordStack.size() - 1).size() - 1) {
@@ -106,8 +92,7 @@ public class StringCombinations {
 					break;
 				}
 				wordStack.pop();
-				index = indexStack.pop() + 1;
-
+				int index = indexStack.pop() + 1;
 				// Push the next word of the current level
 				wordStack.push(strs.get(wordStack.size()).get(index));
 				indexStack.push(index);

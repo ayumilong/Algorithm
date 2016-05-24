@@ -20,7 +20,7 @@ public class JumpGameII {
 		int[] nums = {6,2,6,1,7,9,3,5,3,7,2,8,9,4,7,7,2,2,8,4,6,6,1,3};
 		System.out.println(jg.jump(nums));
 	}
-	private class GeneralTreeNode {
+	private class GeneralTreeNode {//A node can have any number of child
 		public int val;
 		public int index;
 		public List<GeneralTreeNode> children;
@@ -37,6 +37,7 @@ public class JumpGameII {
 		GeneralTreeNode root = new GeneralTreeNode(nums[0], 0);
 		Queue<GeneralTreeNode> nodes = new LinkedList<>();
 		nodes.offer(root);
+		//Build the tree
 		while(!nodes.isEmpty()){
 			GeneralTreeNode cur = nodes.poll();
 			cur.children = new LinkedList<>();
@@ -56,7 +57,7 @@ public class JumpGameII {
 		System.out.println();
 		return jump;
 	}
-	
+	//DFS to find the smallest path and stored in sp
 	private int shortestPath(GeneralTreeNode root, List<Integer> path, List<Integer> sp){
 		if(root.children.size() == 0){
 			if(sp.size() == 0 || sp.size() > path.size()){

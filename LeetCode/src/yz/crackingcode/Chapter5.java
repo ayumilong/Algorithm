@@ -34,20 +34,6 @@ public class Chapter5 {
 		n = n | (m << i);
 		return n;
 	}
-	 int insertMToN1(int m, int n, int i, int j){
-		 int count = j - i;
-		 while(count >= 0){
-			 int mask = ~(1 << (i + count));
-			 n = n & mask; //Clear the i + count bit
-			 mask = 1 << count;
-			 mask = (m & mask) == 0 ? 0 : (1 << (i + count));
-			 if(mask != 0){
-				 n = n | mask; //Set the i + count bit
-			 }
-			 --count;
-		 }
-		 return n;
-	 }
 	 
 	 /*
 	  * Question #2
@@ -123,89 +109,41 @@ public class Chapter5 {
 	 /*
 	  * Question #3
 	  */
-	 int getPrevious(int num){
-		 int c0 = 0;
-		 int c1 = 0;
-		 int c = num;
-		 while((c & 1) != 0){
-			 ++c1;
-			 c >>= 1;
-		 }
-		 while((c & 1) == 0 && c != 0){
-			 ++c0;
-			 c >>= 1;
-		 }
-		 if((c0 + c1) == 31 || (c0 + c1) == 0){
-			 return -1;
-		 }
-		 int p = c0 + c1;
-		 num = num & (~0 << (p + 1));
-		 //num = num & ~((1 << (p + 1)) - 1);
-		 //num = num | (((1 << p) - 1) & ~((1 << (c0 - 1)) - 1));
-		 //num = num | (((1 << (c1 + 1)) - 1) << (c0 - 1));
-		 num = num | ((1 << (c1 + c0)) - (1 << (c0 - 1)));
-		 return num;
-	 }
-	 
-	 int getNext(int num){//num is a positive number
-		 int c1 = 0; //The count of ones after non-trailing zeroPos
-		 int zeroPos = 0;
-		 while(zeroPos < 31){
-			 if(((1 << zeroPos) & num) != 0){
-				 ++c1;
-				 if(((1 << (zeroPos + 1)) & num) == 0){
-					 ++zeroPos;
-					 break;
-				 }
+	 public static int getNext(int n){
+		 boolean findOne = false;
+		 int oneCount = 0;
+		 for(int i = 0; i < 31; ++i){//n is positive integer
+			 if((n & (1 << i)) != 0){
+				 findOne = true;
+				 ++oneCount;
+			 }else if(findOne){//101110, i is 4
+				 n |= (1 << i);//Set the zero bit to 1: 111110
+				 n &= ~0 << i;//Clear all the bits after i: 110000
+				 n |= ((1 << (oneCount - 1)) - 1);//110011
+				 return n;
 			 }
-			 ++zeroPos;
 		 }
-		 if(zeroPos == 31){
-			 return -1; //Invalid 
-		 }
-		 num = num | (1 << zeroPos); 
-		 int mask = ~0 << zeroPos; // mask is 1111...1000.000
-		 //int mask = ~((1 << zeroPos) - 1);
-		 num = num & mask;
-		 mask = (1 << (c1 - 1)) - 1; //mask is 000000....0111...1
-		 num = num | mask;
-		 return num;
+		 return -1;
 	 }
 	 
-	 /*
-	  * Brute force
-	  */
-	 int onesCount(int num){
-		 int count = 0;
-		 int temp = 1;
-		 for(int i = 0; i < 32; ++i){
-			 if((num & temp) != 0){
-				 ++count;
+	 public static int getPrevious(int n){
+		 int zeroCount = 0;
+		 boolean findZero = false;
+		 for(int i = 0; i < 31; ++i){
+			 if((n & (1 << i)) == 0){
+				 findZero = true;
+				 ++zeroCount;
+			 }else if(findZero){//1001001111, i should be 6
+				 n &= ~((1 << (i + 1)) - 1);//Clear to 100000000
+				 --zeroCount; //The right part will has one less zero cause we set ith 1 to 0
+				 int oneCount = i - zeroCount;
+				 int right = (1 << oneCount) - 1;
+				 n |= (right << zeroCount);
+				 return n;
 			 }
-			 temp = temp << 1;
 		 }
-		 return count;
+		 return -1;
 	 }
-	 
-	 void getSmallerAndGreater(int num){
-		 int count = onesCount(num);
-		 int smaller = num;
-		 int smallerCount;
-		 do{
-			 --smaller;
-			 smallerCount = onesCount(smaller);
-		 }while(smallerCount != count);
-		 System.out.println(smaller);
-		 
-		 int greater = num;
-		 int greaterCount;
-		 do{
-			 ++greater;
-			 greaterCount = onesCount(greater);
-		 }while(greaterCount != count);
-		 System.out.println(greater);
-	 }
-	 
 	 /*
 	  * Question #5
 	  */
